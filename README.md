@@ -130,7 +130,7 @@ Next, you can use AWS Serverless Application Repository to deploy ready to use A
 
 ## Steps to Test
 1. Deploy AWS lambda with zip file already in repository "https://github.com/nittysharma/skillontology/tree/main/HelloWorldFunction/build/distributions/HelloWorldFunction.zip"
-2. Create an Amazon Bedrock Knowledges with source as s3 use file persent in "https://github.com/nittysharma/skillontology/tree/main/HelloWorldFunction/sample/data.pdf"
+2. Create an Amazon Bedrock Knowledges with source as s3 use file persent in "https://github.com/nittysharma/skillontology/tree/main/HelloWorldFunction/data/data.pdf"
 3. Copy KnowledgebaseID we will use this to pass in AWS lambda.
 4. Add environmental variable in AWS lambda configuration
 key : "modelId" possible value" "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet-20240229-v1:0"
