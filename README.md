@@ -124,3 +124,19 @@ sam delete --stack-name skillMapperKB
 See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) for an introduction to SAM specification, the SAM CLI, and serverless application concepts.
 
 Next, you can use AWS Serverless Application Repository to deploy ready to use Apps that go beyond hello world samples and learn how authors developed their applications: [AWS Serverless Application Repository main page](https://aws.amazon.com/serverless/serverlessrepo/)
+
+
+
+
+## Steps to Test
+1. Deploy AWS lambda with zip file already in repository "https://github.com/nittysharma/skillontology/tree/main/HelloWorldFunction/build/distributions/HelloWorldFunction.zip"
+2. Create an Amazon Bedrock Knowledges with source as s3 use file persent in "https://github.com/nittysharma/skillontology/tree/main/HelloWorldFunction/sample/data.pdf"
+3. Copy KnowledgebaseID we will use this to pass in AWS lambda.
+4. Add environmental variable in AWS lambda configuration
+key : "modelId" possible value" "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet-20240229-v1:0"
+key: "knowledgeBaseId" possible value "NTOFV---G9"  //KnowledgebaseID value you copied
+key: "promptText" possible value "Human: Classify the given Text description into given Skill categories. Please output the category label in <output></output> tags.Please share response in maximum three words. In Case you don't find any relevant response, please say 'No Response'. Here is the product description."
+5. Add a rest api in API gateway to trigger this lambda.
+6. Use API endpoint with queryString parameter "extractedSkill" for example https://apigateway.com is your new endpoint you can test mapping of extracted skills based on the data we have in s3 bucket that what would be mapping of extracted skills with Standard value.
+   https://apigateway.com?extractedSkill=excel you will get response as Microsoft excel
+
