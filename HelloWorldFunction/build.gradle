@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+task buildZip(type: Zip) {
+    into('lib') {
+        from(jar)
+        from(configurations.runtimeClasspath)
+    }
+}
+dependencies {
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.2'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'software.amazon.awssdk:s3:2.25.40'
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.228')
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.710'
+    implementation 'software.amazon.awssdk:bedrockagentruntime:2.25.40'
+    implementation 'software.amazon.awssdk:bedrockagent:2.25.40'
+}
+
+sourceCompatibility = 17
+targetCompatibility = 17
